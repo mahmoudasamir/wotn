@@ -426,7 +426,9 @@ body.dark-mode #navbar ul li a {
 body.dark-mode .scrolled a {
   color: white !important;
 }
-
+body.dark-mode .nav-links.active{
+    background: #111;
+}
 
 body.dark-mode .req-card {
   background: #1f2225;
@@ -885,6 +887,7 @@ input::-webkit-datetime-edit {
   }
 
 }
+
 @media (max-height: 950px) {
   .modal.show {
     align-items: flex-start;
