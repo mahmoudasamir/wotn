@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional front-end portfolio project with multilingual support" />
+  <meta name="keywords" content="HTML, CSS, JavaScript, Portfolio, Frontend Developer" />
+  <meta name="author" content="Mahmoud Samir" />
+  <title>NEOM نيوم</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="./style/style.css" />
+</head>
+
+<body>
+  <header id="main-header">
+    <nav class="container">
+      <div class="logo"><img src="./images/logo.png" alt="NEOM نيوم"></div>
+      <ul class="nav-links">
+        <li><a data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+        <li><a data-en="Jobs" data-ar="الوظائف">الوظائف</a></li>
+        <li><a data-en="Partners" data-ar="الشركاء">الشركاء</a></li>
+        <li><a class="active" data-en="Talented" data-ar="الموهوبين">الموهوبين</a></li>
+        <li><a data-en="Who we are" data-ar="من نحن">من نحن</a></li>
+        <li><a data-en="Contact us" data-ar="تواصل معنا">تواصل معنا</a></li>
+      </ul>
+      <div class="controls">
+        <button id="lang-toggle">EN</button>
+        <button id="theme-toggle">🌙</button>
+        <button id="menu-toggle" class="hamburger">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero" class="section hero">
+    <p class="title" data-en="List" data-ar="قائمة">قائمة</p>
+    <h1 class="Applicants" data-en="Applicants" data-ar="المتقدمين">المتقدمين</h1>
+  </section>
+
+  <section id="requests" class="req-section" aria-labelledby="req-title">
+
+
+    <div id="filter-section" class="filter-section hidden">
+      <h3 class="filter-title" data-en="Filter by" data-ar="تصنيف بواسطة">تصنيف بواسطة</h3>
+      <div class="filter-options">
+        <div>
+          <label><img src="./images/filter-icon.svg" alt=""> <span data-en="Date from" data-ar="التاريخ من">التاريخ
+              من</span></label>
+          <div class="date-range">
+            <input type="date" id="date-from" class="date-from" value="2023-05-22" /><span class="to" data-en="to"
+              data-ar="الى">الي</span> <input type="date" id="date-to" class="date-to" value="2023-05-30" />
+          </div>
+        </div>
+        <div>
+          <label><img src="./images/filter-icon.svg" alt=""> <span data-en="Status"
+              data-ar="الحالة">الحالة</span></label>
+          <div class="date-range">
+            <img src="./images/arrow-down.svg" alt="" class="arrow-down">
+            <input type="text" id="status" class="status" value="غير محدد" />
+          </div>
+        </div>
+        <div>
+          <label><img src="./images/filter-icon.svg" alt=""> <span data-en="Education" data-ar="المؤهل الدراسي">المؤهل
+              الدراسي</span></label>
+          <div class="date-range">
+            <img src="./images/arrow-down.svg" alt="" class="arrow-down">
+            <input type="text" id="education" class="education" value="بكاليريوس" />
+          </div>
+        </div>
+        <div>
+          <label><img src="./images/filter-icon.svg" alt=""> <span data-en="Age from" data-ar="العمر من">العمر
+              من</span></label>
+          <div class="date-range">
+            <input type="number" id="age-from" class="age-from" value="18" /><span class="to" data-en="to"
+              data-ar="الى">الي</span> <input type="number" id="age-to" class="age-to" value="30" />
+          </div>
+        </div>
+      </div>
+
+      <div class="search-button">
+        <button class="btn" id="search-button" data-en="Search" data-ar="بحث">بحث</button>
+      </div>
+    </div>
+
+
+
+
+    <div class="req-header">
+      <div class="req-actions">
+        <label class="req-check">
+          <input type="checkbox" id="req-select-all" />
+          <span class="box"></span>
+          <span data-en="Select All" data-ar="تحديد الكل">تحديد الكل</span>
+        </label>
+
+        <span class="req-pill" aria-live="polite">
+          <span id="req-selected-count">0</span> محدد
+        </span>
+        <span aria-live="filter" id="filter-toggle" style="cursor: pointer; margin: 0 2rem;">
+          <img src="./images/filter.png" alt="Filter">
+        </span>
+      </div>
+    </div>
+
+
+    <div id="req-grid" class="req-grid" dir="rtl"></div>
+  </section>
+
+  <!-- Details Modal -->
+  <div id="detail-modal" class="modal" aria-hidden="true">
+
+    <div class="modal__backdrop" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close" aria-label="إغلاق" data-close>&times;</button>
+
+      <div class="modal__head">
+        <div class="modal__avatar"><img id="modal-avatar" src="" alt=""></div>
+        <h3 id="modal-title" class="modal__name"></h3>
+
+        <div class="modal__contacts">
+          <a id="modal-email" href="#" class="contact"><span></span></a>
+          <img src="./images/mail.svg" alt="">
+        </div>
+        <div class="modal__contacts">
+          <a id="modal-phone" href="#" class="contact"><span></span></a>
+          <img src="./images/phone.svg" alt="">
+        </div>
+      </div>
+
+      <div class="modal__info-grid">
+        <div class="cell"><span class="label" data-en="Nationality" data-ar="الجنسية:">الجنسية:</span><span
+            id="modal-nationality"></span></div>
+        <div class="cell"><span class="label" data-en="Birth date" data-ar="تاريخ الميلاد:">تاريخ الميلاد:</span><span
+            id="modal-dob"></span></div>
+        <div class="cell"><span class="label" data-en="Residence" data-ar="محل الإقامة:">محل الإقامة:</span><span
+            id="modal-residence"></span></div>
+        <div class="cell"><span class="label" data-en="Gender" data-ar="الجنس:">الجنس:</span><span
+            id="modal-gender"></span></div>
+      </div>
+
+      <div class="modal__info-grid">
+        <div class="cell"><span class="label" data-en="Qualification" data-ar="المؤهل:">المؤهل:</span><span
+            id="modal-qualification"></span></div>
+        <div class="cell"><span class="label" data-en="Start Date" data-ar="تاريخ الإبتداء:">تاريخ الإبتداء:</span><span
+            id="modal-startData"></span></div>
+        <div class="cell"><span class="label" data-en="End Date" data-ar="تاريخ الإنتهاء:">تاريخ الإنتهاء:</span><span
+            id="modal-endData"></span></div>
+        <div class="cell"><span class="label" data-en="Degree" data-ar="الدرجة:">الدرجة:</span><span
+            id="modal-degree"></span></div>
+      </div>
+      <div class="modal__info-grid">
+        <div class="cell"><span class="label" data-en="Level of experience" data-ar="مستوى الخبرة:">مستوى
+            الخبرة:</span><span id="modal-levelExperience"></span></div>
+        <div class="cell"><span class="label" data-en="The IT Skills" data-ar="مهارات ال it:">مهارات ال it:</span><span
+            id="modal-iTSkills"></span></div>
+        <div class="cell"><span class="label" data-en="Expected Salary" data-ar="الراتب المتوقع:">الراتب
+            المتوقع:</span><span id="modal-expectedSalary"></span></div>
+        <div class="cell"><span class="label" data-en="Languages" data-ar="اللغات:">اللغات:</span><span
+            id="modal-languages"></span></div>
+      </div>
+
+      <div class="modal__links">
+        <a href="#" data-en="Resume" data-ar="السيرة الذاتية">السيرة الذاتية</a>
+        <a href="#" data-en="Profile" data-ar="الملف التعريفي">الملف التعريفي</a>
+      </div>
+
+      <div class="modal__actions">
+        <button class="btn btn--approve" id="modal-approve" data-en="Approve" data-ar="قبول المتقدم">قبول
+          المتقدم</button>
+        <button class="btn btn--reject" id="modal-reject" data-en="Reject" data-ar="رفض المتقدم">رفض المتقدم</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
